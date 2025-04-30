@@ -77,7 +77,13 @@ pets_alunos = [
     "Coruja-das-torres", 
     "Gato prateado", 
     "Coruja-das-neves", 
-    "Dragão de estimação (miniatura)"
+    "Dragão de estimação"
+]
+posicoes_jogador = [
+    "Apanhador",     
+    "Artilheiro",  
+    "Batedor",       
+    "Goleiro"   
 ]
 
 # Casas
@@ -112,3 +118,31 @@ if len(resposta_aluno.data) == 0:  # verificar se já existem alunos no banco
 
     supabase.table("alunos").insert(dados_nome).execute()
     print("Alunos inseridos")
+
+# Quadribol
+resposta_quadribol = supabase.table("quadribol").select("nome", "casa").execute()
+if len(resposta_quadribol.data) == 0: 
+    dados_quadribol = []
+    for n in casas:
+        casa = resposta_casa.data[casas.index(n)]["nome"]
+        casa_id = resposta_casa.data[casas.index(n)]["id_casa"]
+        print(casa_id)
+        dados_quadribol.append({"nome": casa, "casa": casa_id})
+
+    supabase.table("quadribol").insert(dados_quadribol).execute()
+    print("Times de quadribol inseridos")
+
+
+# Alunos Quadribol
+resposta_alunos_quadribol = supabase.table("alunos_quadribol").select("id","aluno_id","time_nome", "posicao_jogador").execute()
+if len(resposta_alunos_quadribol.data) == 0: 
+    dados_alunos_quadribol = []
+    for i in range(4):
+        time = resposta_quadribol.data
+        nome_time = time["nome"]
+        aluno = random.choice(resposta_aluno.data)
+        posicoes_jogador = random.choice(posicoes_jogador)
+        dados_alunos_quadribol.append({"aluno_id": aluno["id"],"time_nome": nome_time, "posicao_jogador": posicoes_jogador})
+        
+    supabase.table("quadribol").insert(dados_alunos_quadribol).execute()
+    print("Times de quadribol inseridos")

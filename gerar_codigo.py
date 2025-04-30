@@ -442,3 +442,106 @@ if len(resposta_participa.data) == 0:
 
     supabase.table("participa_evento").insert(dados_participa).execute()
     print("Participações em eventos inseridas")
+
+# Verificação dos dados inseridos 
+print("Validação dos dados:")
+
+#Alunos sem casa 
+
+alunos_sem_casa = []
+for aluno in resposta_aluno.data:
+    if not aluno["casa"]:
+        alunos_sem_casa.append(aluno["nome"])
+
+if alunos_sem_casa:
+    print("Há alunos sem casa atribuída")
+else:
+    print("Todos os alunos pertencem a uma casa")
+
+#Professores sem matéria atribuída
+
+professores_sem_materia = []
+for prof in resposta_professores.data:
+    if not prof["materia"]:
+        professores_sem_materia.append(prof["nome"])
+
+if professores_sem_materia:
+    print("Há professores sem matéria atribuída")
+else:
+    print("Todos os professores têm uma matéria atribuída")
+
+#Matérias sem local definido
+
+materias_sem_local = []
+for mat in resposta_materia.data:
+    if not mat["local"]:
+        materias_sem_local.append(mat["nome"])
+
+if materias_sem_local:
+    print("Há matérias sem local definido")
+else:
+    print("Todas as matérias têm um local de aula")
+
+#Matérias que nenhum professor leciona
+
+materias_sem_professor = []
+for mat in resposta_materia.data:
+    encontrada = False
+    for prof in resposta_professores.data:
+        if prof["materia"] == mat["id_materia"]:
+            encontrada = True
+            break
+    if not encontrada:
+        materias_sem_professor.append(mat["nome"])
+
+if materias_sem_professor:
+    print("Há matérias que nenhum professor leciona")
+else:
+    print("Todas as matérias estão sendo lecionadas")
+
+#Eventos sem nenhum participante
+
+eventos_sem_participantes = []
+for evento in resposta_eventos.data:
+    nome_evento = evento["nome"]
+    encontrou = False
+    for n in resposta_participa.data:
+        if n["evento"] == nome_evento:
+            encontrou = True
+            break
+    if not encontrou:
+        eventos_sem_participantes.append(nome_evento)
+
+if eventos_sem_participantes:
+    print("Há eventos sem participantes")
+else:
+    print("Todos os eventos tem participantes")
+
+
+#Jogadores de quadribol sem posição
+
+jogadores_sem_posicao = []
+for jogador in resposta_alunos_quadribol.data:
+    if "posicao_jogador" not in jogador or not jogador["posicao_jogador"]:
+        jogadores_sem_posicao.append(jogador["aluno_id"])
+
+if jogadores_sem_posicao:
+    print("Há jogadores de quadribol sem posição definida")
+else:
+    print("Todos os jogadores de quadribol tem uma posição")
+    
+#Eventos com locais inexistentes
+
+eventos_com_local_invalido = []
+ids_locais_validos = []
+for local in resposta_locais.data:
+    ids_locais_validos.append(local["id"])
+
+for evento in resposta_eventos.data:
+    if evento["local"] not in ids_locais_validos:
+        eventos_com_local_invalido.append(evento["nome"])
+
+if eventos_com_local_invalido:
+    print("Há eventos com locais inexistentes:")
+else:
+    print("Todos os eventos estão associados a locais válidos")

@@ -356,4 +356,89 @@ if len(resposta_professores.data) == 0:
     print("Professores inseridos")
     
 # Leciona
+resposta_leciona = supabase.table("leciona").select("id_materia", "professor", "alunos").execute()
+if len(resposta_leciona.data) == 0: 
+    dados_leciona = []
+    
+    professores_no_banco = resposta_professores.data
+    alunos_no_banco = resposta_aluno.data
+    ids_alunos = [aluno["id"] for aluno in alunos_no_banco]
 
+    for prof in professores_no_banco:
+        alunos_aleatorios = random.sample(ids_alunos, 10)
+
+        for aluno_id in alunos_aleatorios:
+            dados_leciona.append({
+                "id_materia": prof["materia"],
+                "professor": prof["id"],
+                "alunos": aluno_id
+            })
+
+    supabase.table("leciona").insert(dados_leciona).execute()
+    print("leciona inserido")
+
+# Eventos
+resposta_eventos = supabase.table("eventos").select("nome", "hora", "local").execute()
+if len(resposta_eventos.data) == 0:
+    dados_eventos = []
+
+    locais_no_banco = resposta_locais.data
+
+    for local in locais_no_banco:
+        nome_local = local["nome"]
+        id_local = local["id"]
+
+        if nome_local == "Campo de Quadribol":
+            dados_eventos.append({"nome": "Campeonato de Quadribol da Casa", "hora": "10:00", "local": id_local})
+            dados_eventos.append({"nome": "Treino do Time da Grifinória", "hora": "15:00", "local": id_local})
+
+        elif nome_local == "Salão Comunal da Grifinória":
+            dados_eventos.append({"nome": "Festa de Vitória da Grifinória", "hora": "21:00", "local": id_local})
+            dados_eventos.append({"nome": "Planejamento da Armada de Dumbledore", "hora": "18:00", "local": id_local})
+
+        elif nome_local == "Salão Comunal da Sonserina":
+            dados_eventos.append({"nome": "Celebração da Sonserina após o Torneio", "hora": "20:00", "local": id_local})
+            dados_eventos.append({"nome": "Reunião Secreta da Inquisidora", "hora": "23:00", "local": id_local})
+
+        elif nome_local == "Salão Comunal da Corvinal":
+            dados_eventos.append({"nome": "Discussão sobre os Enigmas", "hora": "17:00", "local": id_local})
+            dados_eventos.append({"nome": "Estudo em Grupo da Corvinal", "hora": "19:00", "local": id_local})
+
+        elif nome_local == "Salão Comunal da Lufa-Lufa":
+            dados_eventos.append({"nome": "Ritual de Amizade da Lufa-Lufa", "hora": "16:00", "local": id_local})
+            dados_eventos.append({"nome": "Celebração de Halloween da Lufa-Lufa", "hora": "22:00", "local": id_local})
+            
+        elif nome_local == "Salão Principal":
+            dados_eventos.append({"nome": "Baile de Inverno", "hora": "20:00", "local": id_local})
+            dados_eventos.append({"nome": "Seleção das Casas pelo Chapéu Seletor", "hora": "19:00", "local": id_local})
+            dados_eventos.append({"nome": "Jantar de Boas-Vindas", "hora": "18:00", "local": id_local})
+            dados_eventos.append({"nome": "Anúncio do Torneio Tribruxo", "hora": "14:00", "local": id_local})
+
+    supabase.table("eventos").insert(dados_eventos).execute()
+    print("Eventos inseridos com sucesso")
+    
+
+# Participações em eventos
+resposta_participa = supabase.table("participa_evento").select("professor", "aluno", "evento").execute()
+if len(resposta_participa.data) == 0:
+    dados_participa = []
+    
+    professores_no_banco = resposta_professores.data
+    alunos_no_banco = resposta_aluno.data
+    eventos_no_banco = resposta_eventos.data 
+
+    for evento in eventos_no_banco:
+        nome_evento = evento["nome"]
+
+        prof = random.choice(professores_no_banco)
+        alunos_aleatorios = random.sample(alunos_no_banco, 5)
+
+        for aluno in alunos_aleatorios:
+            dados_participa.append({
+                "professor": prof["id"],
+                "aluno": aluno["id"],
+                "evento": nome_evento
+            })
+
+    supabase.table("participa_evento").insert(dados_participa).execute()
+    print("Participações em eventos inseridas")

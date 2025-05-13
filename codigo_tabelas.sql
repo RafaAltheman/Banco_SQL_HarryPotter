@@ -89,8 +89,10 @@ ORDER BY pontos
 
 /* 2. Listar os apanhadores de cada time de quadribol */
 /*
-SELECT aluno_id, posicao_jogador FROM alunos_quadribol
-WHERE posicao_jogador = 'Apanhador'
+SELECT a.nome AS aluno, aq.posicao_jogador, aq.time_nome
+FROM alunos_quadribol aq
+JOIN alunos a ON aq.aluno_id = a.id
+WHERE aq.posicao_jogador = 'Apanhador';
 */
 
 /* 3. Listar os eventos que ocorreram no Salão Principal, os professores e os alunos que participam */
@@ -141,7 +143,7 @@ WHERE EXISTS (
 );
 */
 
-/* 6. Listar os alunos que não jogam quadribol e de qual casa eles são M*/
+/* 6. Listar os alunos que não jogam quadribol e de qual casa eles são */
 /*
 SELECT
   a.nome AS alunos,
@@ -193,7 +195,8 @@ ORDER BY c.nome, participacoes;
 */
 
 /* 10. Mostrar a quantidade de alunos de cada casa e a quantidade de alunos de cada casa que jogam quadribol */
-/*SELECT 
+/*
+SELECT 
   c.nome AS casa,
   COUNT(a.id) AS total_alunos,
   COUNT(aq.aluno_id) AS alunos_quadribol

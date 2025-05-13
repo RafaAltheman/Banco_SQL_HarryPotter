@@ -1,8 +1,8 @@
 import random
 from supabase import create_client, Client
 
-supabase_url = 'https://xoskahjpbroaqczrksvj.supabase.co'
-supabase_key = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inhvc2thaGpwYnJvYXFjenJrc3ZqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDUzNjIzMDcsImV4cCI6MjA2MDkzODMwN30.cwL8rUkccYrxafczuaezVafP-h5j2F3H4CRAlOdxdzM'
+supabase_url = ''
+supabase_key = ''
 supabase: Client = create_client(supabase_url, supabase_key)
 
 casas=["Grifinória", "Corvinal", "Lufa-Lufa", "Sonserina"]

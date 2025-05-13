@@ -109,7 +109,19 @@ JOIN alunos a ON pe.aluno = a.id
 WHERE l.nome = 'Salão Principal';
 */
 
-/*4. Alunos que têm o mesmo pet e jogam na mesma posição */
+/* 4. Qual aluno teve qual materia em qual local */
+/*
+SELECT 
+  a.nome AS aluno,
+  m.nome AS materia,
+  l.nome AS local
+FROM leciona lec
+JOIN alunos a ON lec.alunos = a.id
+JOIN materia m ON lec.id_materia = m.id_materia
+JOIN locais l ON m.local = l.id;
+*/
+
+/* 5. Alunos que têm o mesmo pet e jogam na mesma posição */
 /*
 SELECT 
   a1.nome AS aluno1,
@@ -123,7 +135,7 @@ JOIN alunos_quadribol aq2 ON a2.id = aq2.aluno_id
 WHERE aq1.posicao_jogador = aq2.posicao_jogador;
 */
 
-/*5. Professores que participaram dos mesmos eventos que seus alunos */
+/* 6. Professores que participaram dos mesmos eventos que seus alunos */
 /*
 SELECT DISTINCT 
   prof.nome AS professor,
@@ -143,7 +155,7 @@ WHERE EXISTS (
 );
 */
 
-/* 6. Listar os alunos que não jogam quadribol e de qual casa eles são */
+/* 7. Listar os alunos que não jogam quadribol e de qual casa eles são */
 /*
 SELECT
   a.nome AS alunos,
@@ -155,25 +167,13 @@ WHERE a.id NOT IN (
 );
 */
 
-/* 7. Listar os professores que representam um casa e qual casa eles representam. Os que não são representantes, substituir por 'nenhum' */
+/* 8. Listar os professores que representam um casa e qual casa eles representam. Os que não são representantes, substituir por 'nenhum' */
 /*
 SELECT 
   p.nome AS professor,
   COALESCE(c.nome, 'nenhum') AS casa
 FROM professores p 
 LEFT JOIN casa c ON p.representa = c.id_casa;
-*/
-
-/* 8. Qual aluno teve qual materia em qual local */
-/*
-SELECT 
-  a.nome AS aluno,
-  m.nome AS materia,
-  l.nome AS local
-FROM leciona lec
-JOIN alunos a ON lec.alunos = a.id
-JOIN materia m ON lec.id_materia = m.id_materia
-JOIN locais l ON m.local = l.id;
 */
 
 /* 9.Para cada casa, liste o aluno que mais participou de eventos, sua quantidade de participações e as matérias que ele teve, com o local dessas matérias */

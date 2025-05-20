@@ -19,19 +19,34 @@
 
 #### 3. Listar os eventos que ocorreram no Salão Principal, os professores e os alunos que participam. 
 
-#### 4. Alunos que têm o mesmo pet e jogam na mesma posição. 
+#### 4. Qual aluno teve qual materia em qual local. 
 
-#### 5. Professores que participaram dos mesmos eventos que seus alunos. 
+#### 5. Alunos que têm o mesmo pet e jogam na mesma posição. 
 
-#### 6. Listar os alunos que não jogam quadribol e de qual casa eles são. 
+#### 6. Professores que participaram dos mesmos eventos que seus alunos. 
 
-#### 7. Listar os professores que representam um casa e qual casa eles representam. Os que não são representantes, substituir por 'nenhum'. 
+#### 7. Listar os alunos que não jogam quadribol e de qual casa eles são. 
 
-#### 8. Qual aluno teve qual materia em qual local. 
+#### 8. Listar os professores que representam um casa e qual casa eles representam. Os que não são representantes, substituir por 'nenhum'. 
 
 #### 9.Para cada casa, liste o aluno que mais participou de eventos, sua quantidade de participações e as matérias que ele teve, com o local dessas matérias.
 
 #### 10. Mostrar a quantidade de alunos de cada casa e a quantidade de alunos de cada casa que jogam quadribol. 
 
+### Descrição de como executar o projeto:
+
+#### 1- Criação do banco de dados em SQL (Supabase).
+
+#### 2- Colocar a URL e a API key do banco do supabase no código de python, para que o banco receba as informações corretamente.
+
+#### 3- Executar o script em Python.
+
+#### 4- Rodar as queries uma por uma para testa-lás (as queries estão comentadas para facilitar rodar uma de cada vez).
+
 ## Diagrama MER
 ![image](https://github.com/user-attachments/assets/042940bd-b01a-4045-a121-cb20392531b5)
+
+## Diagrama MR
+
+![image](https://github.com/user-attachments/assets/e143ea4d-1959-40a9-bdf7-5a1ad983f64c)
+

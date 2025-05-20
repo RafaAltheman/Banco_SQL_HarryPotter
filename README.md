@@ -1,4 +1,37 @@
 # Banco_SQL_HarryPotter
 
+## Integrantes:
+
+### Rafaela Altheman de Campos RA:22.125.062-4
+### Letizia Lowatzki Baptistella RA:22.125.063-2
+
+## Descrição do projeto:
+
+### Este projeto tem como objetivo principal desenvolver um banco de dados relacional para uma Hogwarts, com tabelas representando alunos, professores, matérias, times de quadribol, casas, eventos e locais.
+
+### Os dados foram criados por nós por meio de um script Python e utilizados para preencher o banco e testar consultas SQL. As queries desenvolvidas simulam situações fictícias do mundo de Harry Potter.
+
+### A seguir, estão listadas todas as queries implementadas:
+
+#### 1. Mostrar as casas em ordem de pontuação. 
+
+#### 2. Listar os apanhadores de cada time de quadribol. 
+
+#### 3. Listar os eventos que ocorreram no Salão Principal, os professores e os alunos que participam. 
+
+#### 4. Alunos que têm o mesmo pet e jogam na mesma posição. 
+
+#### 5. Professores que participaram dos mesmos eventos que seus alunos. 
+
+#### 6. Listar os alunos que não jogam quadribol e de qual casa eles são. 
+
+#### 7. Listar os professores que representam um casa e qual casa eles representam. Os que não são representantes, substituir por 'nenhum'. 
+
+#### 8. Qual aluno teve qual materia em qual local. 
+
+#### 9.Para cada casa, liste o aluno que mais participou de eventos, sua quantidade de participações e as matérias que ele teve, com o local dessas matérias.
+
+#### 10. Mostrar a quantidade de alunos de cada casa e a quantidade de alunos de cada casa que jogam quadribol. 
+
 ## Diagrama MER
 ![image](https://github.com/user-attachments/assets/042940bd-b01a-4045-a121-cb20392531b5)

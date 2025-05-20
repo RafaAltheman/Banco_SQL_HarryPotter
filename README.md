@@ -44,7 +44,8 @@
 #### 4- Rodar as queries uma por uma para testa-lás (as queries estão comentadas para facilitar rodar uma de cada vez).
 
 ## Diagrama MER
-![image](https://github.com/user-attachments/assets/704f4de1-5647-455d-b891-5d3d4ad28659)
+![image](https://github.com/user-attachments/assets/6236ea44-c7cf-452c-bb88-e369bab6a5ad)
+
 
 ## Diagrama MR
 
